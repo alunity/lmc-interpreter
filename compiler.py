@@ -33,7 +33,7 @@ def compile(code: list[str]) -> list[str]:
 
     # Each line should either begin with a instruction or a label#
 
-    # format(token: line number)
+    # format(label: line number)
     label_table: dict[str, int] = {}
 
     for line_number, tokens in enumerate(lines):
@@ -65,7 +65,6 @@ def compile(code: list[str]) -> list[str]:
         else:
 
             # If machine code instruction has xx it expects an opcode therefore line should have 2-3 tokens depending on whether or not a label is present or not
-            # The line should have 1-2 tokens
             if "xx" in instructions[instruction]:
                 expected = 2
             else:
