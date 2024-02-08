@@ -59,10 +59,11 @@ def compile(code: list[str]) -> list[str]:
         # dat is an exception since it can have 1,2 or 3 tokens depending on whether it has no label and no value, no label or no value, a label and a value respectively
         if instruction == "dat":
             if len(tokens) > 3:
-                raise Exception(f"Line {line_number} has too many tokens: {" ".join(tokens).upper()}"
-) 
+                raise Exception(
+                    f"Line {line_number} has too many tokens: {' '.join(tokens).upper()}"
+                )
         else:
-                
+
             # If machine code instruction has xx it expects an opcode therefore line should have 2-3 tokens depending on whether or not a label is present or not
             # The line should have 1-2 tokens
             if "xx" in instructions[instruction]:
@@ -71,14 +72,12 @@ def compile(code: list[str]) -> list[str]:
                 expected = 1
             if len(tokens) != expected + instruction_index:
                 raise Exception(
-                    f"Line {line_number} has {"too many" if len(tokens) > expected + instruction_index else "too few"} tokens: {" ".join(tokens).upper()}"
+                    f"Line {line_number} has {'too many' if len(tokens) > expected + instruction_index else 'too few'} tokens: {' '.join(tokens).upper()}"
                 )
 
         #
         # Code generation
         #
-
-
 
         x: str = instructions[instruction]
 
@@ -90,8 +89,9 @@ def compile(code: list[str]) -> list[str]:
                 if x.isdigit():
                     x = str(int(x))
                 else:
-                    raise Exception(f"Values in memory must be integers. Line {line_number}: {" ".join(tokens)}")
-                
+                    raise Exception(
+                        f"Values in memory must be integers. Line {line_number}: {' '.join(tokens)}"
+                    )
 
         if "xx" in x:
             operand = tokens[instruction_index + 1]
@@ -103,6 +103,3 @@ def compile(code: list[str]) -> list[str]:
         machine_code.append(x)
 
     return machine_code
-
-
-        
