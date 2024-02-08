@@ -15,4 +15,5 @@ with open(sys.argv[1], "r") as file:
         # Case insensitive
         code.append(line.strip().lower())
 
+# Debug output if -d given as argument
 execute(compile(code), "-d" in sys.argv)

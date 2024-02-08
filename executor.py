@@ -1,5 +1,10 @@
-def execute(code: list[str], debug=False, output=print) -> None:
-    # Let the output function be varied to allow for easily being able to extract output if needed
+from typing import Callable
+
+
+def execute(
+    code: list[str], debug=False, input: Callable = input, output: Callable = print
+) -> None:
+    # Let the input and output be varied, for example to allow testing
 
     if debug:
         print(code)
@@ -37,7 +42,7 @@ def execute(code: list[str], debug=False, output=print) -> None:
                         "Unexpected input, only integer inputs are allowed"
                     )
             case "902":
-                print(accumulator)
+                output(accumulator)
             case _:
                 #
                 # Handle instructions with operands
