@@ -3,6 +3,8 @@ import sys
 # Overwrite builtin "compile"
 from compiler import compile
 
+from executor import execute
+
 code: list[str] = []
 
 with open(sys.argv[1], "r") as file:
@@ -13,4 +15,4 @@ with open(sys.argv[1], "r") as file:
         # Case insensitive
         code.append(line.strip().lower())
 
-print(compile(code))
+execute(compile(code), "-d" in sys.argv)
