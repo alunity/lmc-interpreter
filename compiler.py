@@ -45,13 +45,13 @@ def tokenise(code: list[str]) -> list[list[Token]]:
             # Handle empty lines
             if part != "":
                 if part in instructions:
-                    line.append(Token(TokenType("instruction"), part))
+                    line.append(Token(TokenType.INSTRUCTION, part))
                 elif len(line) == 0:
-                    line.append(Token(TokenType("label"), part))
+                    line.append(Token(TokenType.LABEL, part))
                 elif part.isdigit():
-                    line.append(Token(TokenType("operand literal"), part))
+                    line.append(Token(TokenType.OPERAND_LITERAL, part))
                 else:
-                    line.append(Token(TokenType("operand label"), part))
+                    line.append(Token(TokenType.OPERAND_LABEL, part))
         if len(line) > 0:
             tokens.append(line)
     return tokens
